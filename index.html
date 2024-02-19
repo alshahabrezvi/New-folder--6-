@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>hlw</h1>
+
+    <script>
+
+        async function getCountryName() {
+            try {
+                const response = await fetch("https://api.example.com/country"); // Replace with your actual API URL
+                const data = await response.json();
+                return data.country;
+            } catch (error) {
+                console.error("Error fetching country name:", error);
+                return null;
+            }
+        }
+
+        function handleCountryName(countryName) {
+            const bodyElement = document.querySelector("body");
+            if (countryName === "usa") {
+                bodyElement.style.display = "block";
+                // Run Google Analytics code here
+                window.dataLayer = window.dataLayer || [];
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag("js", new Date());
+
+                gtag("config", "G-SRZCZHDRYD");// Replace GA_MEASUREMENT_ID with your actual Google Analytics measurement ID
+            } else {
+                bodyElement.style.display = "none";
+            }
+        }
+
+        (async () => {
+            const countryName = await getCountryName();
+            handleCountryName(countryName);
+        })();
+
+
+    </script>
+
 </body>
+
 </html>
