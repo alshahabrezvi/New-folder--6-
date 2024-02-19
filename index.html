@@ -50,8 +50,7 @@
 
         (async () => {
             const countryName = await getCountryName();
-            handleCountryName(countryName);
-            console.log(countryName)
+            handleCountryName(countryName.country);
         })();
 
 
