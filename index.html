@@ -19,11 +19,12 @@
                 const response = await fetch("https://demo-geo-ip.onrender.com/"); // Replace with your actual API URL
                 const data = await response.json();
                 // data.country
-console.log(data)
+                console.log(data.country)
                 const bodyElement = document.querySelector("body");
+
                 if (data.country != "US" || "UK" || "ES" || "CA" || "AU" || "FR" || "DE" || "PL" || "LU") {
                     bodyElement.style.display = "block";
-console.log("hlw")
+                    console.log("hlw")
                     // Run Google Analytics code here
 
                     window.dataLayer = window.dataLayer || [];
@@ -45,7 +46,7 @@ console.log("hlw")
             }
         }
 
-   getCountryName();
+        getCountryName();
 
 
     </script>
