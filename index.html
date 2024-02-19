@@ -35,7 +35,7 @@
 
                 // Run Google Analytics code here
 
-                
+
                 window.dataLayer = window.dataLayer || [];
                 function gtag() {
                     dataLayer.push(arguments);
@@ -51,6 +51,7 @@
         (async () => {
             const countryName = await getCountryName();
             handleCountryName(countryName);
+            console.log(countryName)
         })();
 
 
