@@ -10,55 +10,44 @@
 <body>
     <h1>DEMO</h1>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
-        integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SRZCZHDRYD"></script>
 
     <script>
 
         async function getCountryName() {
             try {
-                const { data } = await axios.get("https://demo-geo-ip.onrender.com/"); // Replace with your actual API URL
+                const response = await fetch("https://demo-geo-ip.onrender.com/"); // Replace with your actual API URL
+                const data = await response.json();
+                // data.country
+
+                const bodyElement = document.querySelector("body");
+                if (data.country === "US" || "UK" || "ES" || "CA" || "AU" || "FR" || "DE" || "PL" || "LU") {
+                    bodyElement.style.display = "block";
+
+                    // Run Google Analytics code here
+
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() {
+                        dataLayer.push(arguments);
+                    }
+                    gtag("js", new Date());
+
+                    gtag("config", "G-SRZCZHDRYD");// Replace GA_MEASUREMENT_ID with your actual Google Analytics measurement ID
+                } else {
+                    bodyElement.style.display = "none";
+                }
 
 
-                console.log(data.country)
-                return data.country;
             } catch (error) {
                 console.error("Error fetching country name:", error);
                 return null;
             }
         }
 
-        function handleCountryName(country) {
-            console.log(country)
-            const bodyElement = document.querySelector("body");
-            if (country === "US" || "UK" || "ES" || "CA" || "AU" || "FR" || "DE" || "PL" || "LU") {
-                bodyElement.style.display = "block";
-
-
-
-
-                // Run Google Analytics code here
-
-
-                window.dataLayer = window.dataLayer || [];
-                function gtag() {
-                    dataLayer.push(arguments);
-                }
-                gtag("js", new Date());
-
-                gtag("config", "G-SRZCZHDRYD");// Replace GA_MEASUREMENT_ID with your actual Google Analytics measurement ID
-            } else {
-                bodyElement.style.display = "none";
-            }
-        }
 
         (async () => {
             const countryName = await getCountryName();
             console.log(countryName)
-            handleCountryName(countryName);
         })();
 
 
