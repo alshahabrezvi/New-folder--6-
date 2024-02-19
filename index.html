@@ -20,11 +20,14 @@
                 const data = await response.json();
                 // data.country
                 console.log(data.country)
+                const array = ["US", "UK", "ES", "CA", "AU", "FR", "DE", "PL", "LU"]
                 const bodyElement = document.querySelector("body");
 
-                if (data.country != "US" || "UK" || "ES" || "CA" || "AU" || "FR" || "DE" || "PL" || "LU") {
+                if (array.includes(data.country)) {
                     bodyElement.style.display = "block";
-                    console.log("hlw")
+                   
+
+                    
                     // Run Google Analytics code here
 
                     window.dataLayer = window.dataLayer || [];
